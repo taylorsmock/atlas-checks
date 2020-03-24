@@ -40,7 +40,8 @@ public interface Check extends Serializable
      * The finder returned will be used to collect the {@link ComplexEntity}s this check will be
      * applied to.
      *
-     * @param <T> The type of {@link ComplexEntity} to be returned
+     * @param <T>
+     *            The type of {@link ComplexEntity} to be returned
      * @return An {@link Optional} {@link Finder}
      */
     default <T extends ComplexEntity> Optional<Finder<T>> finder()

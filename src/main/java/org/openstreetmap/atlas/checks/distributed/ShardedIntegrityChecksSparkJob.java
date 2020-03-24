@@ -34,7 +34,6 @@ import org.openstreetmap.atlas.event.ShutdownEvent;
 import org.openstreetmap.atlas.exception.CoreException;
 import org.openstreetmap.atlas.generator.sharding.AtlasSharding;
 import org.openstreetmap.atlas.generator.tools.caching.HadoopAtlasFileCache;
-import org.openstreetmap.atlas.generator.tools.spark.SparkJob;
 import org.openstreetmap.atlas.generator.tools.spark.utilities.SparkFileHelper;
 import org.openstreetmap.atlas.geography.atlas.Atlas;
 import org.openstreetmap.atlas.geography.atlas.AtlasResourceLoader;
@@ -112,7 +111,7 @@ public class ShardedIntegrityChecksSparkJob extends IntegrityChecksCommandArgume
     public void start(final CommandMap commandMap)
     {
         final Time start = Time.now();
-        final String atlasDirectory = (String) commandMap.get(SparkJob.INPUT);
+        final String atlasDirectory = (String) commandMap.get(ATLAS_FOLDER);
         final String input = Optional.ofNullable(input(commandMap)).orElse(atlasDirectory);
 
         // Gather arguments

@@ -55,8 +55,8 @@ public class AddressPointMatchCheck extends BaseCheck<Object>
     public AddressPointMatchCheck(final Configuration configuration)
     {
         super(configuration);
-        this.boundsSize = Distance.meters(
-                configurationValue(configuration, "bounds.size", BOUNDS_SIZE_DEFAULT));
+        this.boundsSize = Distance
+                .meters(configurationValue(configuration, "bounds.size", BOUNDS_SIZE_DEFAULT));
     }
 
     @Override

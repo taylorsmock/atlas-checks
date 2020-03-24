@@ -50,7 +50,7 @@ public class ShardedIntegrityChecksSparkJobTest
                 .collect(Collectors.toSet());
         for (final File file : flagFiles)
         {
-            try(BufferedReader br = new BufferedReader(
+            try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(new FileInputStream(file.getAbsolutePath()))))
             {
                 Assert.assertEquals(2, br.lines().count());

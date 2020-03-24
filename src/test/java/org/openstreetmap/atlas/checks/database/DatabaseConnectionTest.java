@@ -56,67 +56,58 @@ public class DatabaseConnectionTest
     }
 
     @Test
-    public void getDefaultSchemaTest() throws SQLException
+    public void getDefaultSchemaTest()
     {
-        try (DatabaseConnection databaseConnection = new DatabaseConnection("localhost/testdb"))
-        {
-            Assert.assertEquals("public", databaseConnection.getSchema());
-        }
+        final DatabaseConnection databaseConnection = new DatabaseConnection("localhost/testdb");
+
+        Assert.assertEquals("public", databaseConnection.getSchema());
     }
 
     @Test
-    public void getEmptyQueryParamTest() throws SQLException
+    public void getEmptyQueryParamTest()
     {
-        try (DatabaseConnection databaseConnection = new DatabaseConnection("localhost/testdb"))
-        {
-            final Map<String, String> queryParameters = databaseConnection.getQueryParameters();
+        final DatabaseConnection databaseConnection = new DatabaseConnection("localhost/testdb");
+        final Map<String, String> queryParameters = databaseConnection.getQueryParameters();
 
-            Assert.assertEquals(0, queryParameters.size());
-        }
+        Assert.assertEquals(0, queryParameters.size());
     }
 
     @Test
-    public void getQueryParamTest() throws SQLException
+    public void getQueryParamTest()
     {
-        try (DatabaseConnection databaseConnection = new DatabaseConnection(
-                "localhost/testdb?user=testuser&password=funnypassword"))
-        {
-            final Map<String, String> queryParameters = databaseConnection.getQueryParameters();
+        final DatabaseConnection databaseConnection = new DatabaseConnection(
+                "localhost/testdb?user=testuser&password=funnypassword");
+        final Map<String, String> queryParameters = databaseConnection.getQueryParameters();
 
-            Assert.assertEquals("testuser", queryParameters.get("user"));
-            Assert.assertEquals("funnypassword", queryParameters.get("password"));
-        }
+        Assert.assertEquals("testuser", queryParameters.get("user"));
+        Assert.assertEquals("funnypassword", queryParameters.get("password"));
     }
 
     @Test
-    public void getSchemaTest() throws SQLException
+    public void getSchemaTest()
     {
-        try (DatabaseConnection databaseConnection = new DatabaseConnection(
-                "localhost/testdb?currentSchema=testschema"))
-        {
-            Assert.assertEquals("testschema", databaseConnection.getSchema());
-        }
+        final DatabaseConnection databaseConnection = new DatabaseConnection(
+                "localhost/testdb?currentSchema=testschema");
+
+        Assert.assertEquals("testschema", databaseConnection.getSchema());
     }
 
     @Test
-    public void schemaConnectionStringParserTest() throws SQLException
+    public void schemaConnectionStringParserTest()
     {
-        try (DatabaseConnection databaseConnection = new DatabaseConnection(
-                "localhost/testdb?currentSchema=public"))
-        {
-            Assert.assertEquals("postgresql://localhost/testdb?currentSchema=public",
-                    databaseConnection.getConnectionURI().toString());
-        }
+        final DatabaseConnection databaseConnection = new DatabaseConnection(
+                "localhost/testdb?currentSchema=public");
+
+        Assert.assertEquals("postgresql://localhost/testdb?currentSchema=public",
+                databaseConnection.getConnectionURI().toString());
     }
 
     @Test
-    public void simpleConnectionStringParserTest() throws SQLException
+    public void simpleConnectionStringParserTest()
     {
-        try (DatabaseConnection databaseConnection =
-                new DatabaseConnection("localhost/testdb"))
-        {
-            Assert.assertEquals("postgresql://localhost/testdb",
-                    databaseConnection.getConnectionURI().toString());
-        }
+        final DatabaseConnection databaseConnection = new DatabaseConnection("localhost/testdb");
+
+        Assert.assertEquals("postgresql://localhost/testdb",
+                databaseConnection.getConnectionURI().toString());
     }
 }

@@ -137,7 +137,7 @@ public class IntegrityCheckSparkJob extends IntegrityChecksCommandArguments
     @Override
     public void start(final CommandMap commandMap)
     {
-        final String atlasDirectory = (String) commandMap.get(SparkJob.INPUT);
+        final String atlasDirectory = (String) commandMap.get(ATLAS_FOLDER);
         final String input = Optional.ofNullable(input(commandMap)).orElse(atlasDirectory);
         final String output = output(commandMap);
         @SuppressWarnings("unchecked")
@@ -395,7 +395,8 @@ public class IntegrityCheckSparkJob extends IntegrityChecksCommandArguments
      *            set of {@link BaseCheck}s to execute
      * @return {@code true} if sanity check passes, {@code false} otherwise
      */
-    private boolean isValidInput(final StringList countries, final Set<BaseCheck<?>> checksToExecute)
+    private boolean isValidInput(final StringList countries,
+            final Set<BaseCheck<?>> checksToExecute)
     {
         if (countries.size() == 0 || checksToExecute.size() == 0)
         {
