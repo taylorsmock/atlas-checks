@@ -192,7 +192,7 @@ public abstract class IntegrityChecksCommandArguments extends SparkJob
     @Override
     protected SwitchList switches()
     {
-        return super.switches().with(ATLAS_FOLDER, MAP_ROULETTE, COUNTRIES, CONFIGURATION_FILES,
+        return super.switches().with(SparkJob.INPUT, MAP_ROULETTE, COUNTRIES, CONFIGURATION_FILES,
                 CONFIGURATION_JSON, PBF_BOUNDING_BOX, PBF_SAVE_INTERMEDIATE_ATLAS, OUTPUT_FORMATS,
                 CHECK_FILTER);
     }

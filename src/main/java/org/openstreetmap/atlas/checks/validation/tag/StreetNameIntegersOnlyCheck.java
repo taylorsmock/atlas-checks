@@ -23,7 +23,7 @@ import com.google.common.base.CharMatcher;
  *
  * @author bbreithaupt
  */
-public class StreetNameIntegersOnlyCheck extends BaseCheck
+public class StreetNameIntegersOnlyCheck extends BaseCheck<Object>
 {
 
     private static final long serialVersionUID = 3439708862406928654L;
@@ -47,8 +47,7 @@ public class StreetNameIntegersOnlyCheck extends BaseCheck
     public StreetNameIntegersOnlyCheck(final Configuration configuration)
     {
         super(configuration);
-        this.nameKeys = (List<String>) configurationValue(configuration, "name.keys.filter",
-                NAME_KEYS_DEFAULT);
+        this.nameKeys = configurationValue(configuration, "name.keys.filter", NAME_KEYS_DEFAULT);
     }
 
     /**

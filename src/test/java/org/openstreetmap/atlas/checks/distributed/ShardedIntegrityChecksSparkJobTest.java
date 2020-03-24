@@ -3,6 +3,7 @@ package org.openstreetmap.atlas.checks.distributed;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -39,7 +40,7 @@ public class ShardedIntegrityChecksSparkJobTest
     }
 
     @Test
-    public void countFlagsTest() throws FileNotFoundException
+    public void countFlagsTest() throws FileNotFoundException, IOException
     {
         generateData();
 
@@ -49,10 +50,11 @@ public class ShardedIntegrityChecksSparkJobTest
                 .collect(Collectors.toSet());
         for (final File file : flagFiles)
         {
-            Assert.assertEquals(2,
-                    new BufferedReader(
-                            new InputStreamReader(new FileInputStream(file.getAbsolutePath())))
-                                    .lines().count());
+            try(BufferedReader br = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(file.getAbsolutePath()))))
+            {
+                Assert.assertEquals(2, br.lines().count());
+            }
         }
     }
 

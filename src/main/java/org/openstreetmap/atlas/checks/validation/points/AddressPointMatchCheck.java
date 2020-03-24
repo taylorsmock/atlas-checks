@@ -32,7 +32,7 @@ import com.google.common.base.Strings;
  * @author savannahostrowski
  */
 
-public class AddressPointMatchCheck extends BaseCheck
+public class AddressPointMatchCheck extends BaseCheck<Object>
 {
     public static final String NO_STREET_NAME_POINT_INSTRUCTIONS = "This Node, {0,number,#}, has "
             + "no street name specified in the address. The street name should likely "
@@ -56,7 +56,7 @@ public class AddressPointMatchCheck extends BaseCheck
     {
         super(configuration);
         this.boundsSize = Distance.meters(
-                (Double) configurationValue(configuration, "bounds.size", BOUNDS_SIZE_DEFAULT));
+                configurationValue(configuration, "bounds.size", BOUNDS_SIZE_DEFAULT));
     }
 
     @Override

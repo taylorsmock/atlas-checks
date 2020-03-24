@@ -24,7 +24,7 @@ import org.openstreetmap.atlas.utilities.configuration.Configuration;
  * @author danielbaah
  * @author bbreithaupt
  */
-public class OverlappingAOIPolygonCheck extends BaseCheck
+public class OverlappingAOIPolygonCheck extends BaseCheck<Long>
 {
 
     private static final long serialVersionUID = -3286838841854959683L;
@@ -60,9 +60,9 @@ public class OverlappingAOIPolygonCheck extends BaseCheck
     public OverlappingAOIPolygonCheck(final Configuration configuration)
     {
         super(configuration);
-        this.minimumIntersect = (Double) this.configurationValue(configuration,
+        this.minimumIntersect = this.configurationValue(configuration,
                 "intersect.minimum.limit", MINIMUM_PROPORTION_DEFAULT);
-        final List<String> aoiFiltersString = (List<String>) configurationValue(configuration,
+        final List<String> aoiFiltersString = configurationValue(configuration,
                 "aoi.tags.filters", AOI_FILTERS_DEFAULT);
         aoiFiltersString
                 .forEach(string -> this.aoiFilters.add(TaggableFilter.forDefinition(string)));
